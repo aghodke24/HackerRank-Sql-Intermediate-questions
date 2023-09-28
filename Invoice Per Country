@@ -1,0 +1,10 @@
+2. Invoices per Country
+
+A business is analyzing data by country. For each country, display the country name, total number of invoices, and their average amount.
+Format the average as a floating-point number with 6 decimal places. Return only those countries where their average invoice amount is greater
+than the average invoice amount over all invoices.
+
+
+
+SELECT co.country_name, count(inv.invoice_number), AVG(inv.total_price)from country co join city ct on co.ID = ct.country_id join customer cst on 
+ct.ID = cst.city_id join invoice inv on cst.ID =inv.customer_id GROUP by co.country_name having AVG(inv.total_price) > (select AVG(total_price) from invoice  )  
